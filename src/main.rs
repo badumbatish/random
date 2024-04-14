@@ -1,5 +1,5 @@
 mod cli_arg;
-use cli_arg::{Cli as cli, Echo};
+use cli_arg::Cli as cli;
 mod util;
 use clap::Parser;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
