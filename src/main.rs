@@ -11,13 +11,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for i in v {
         println!("{}", i);
     }
-    match cli.command {
-        Some(cli_arg::Commands::Echo(echo)) => {
-            echo.echo_back();
-        }
-        None => {
-            println!("No command given");
-        }
+    if let Some(cli_arg::Commands::Echo(echo)) = cli.command {
+        echo.echo_back();
     }
+
     Ok(())
 }
