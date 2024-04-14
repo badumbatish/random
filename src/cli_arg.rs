@@ -1,3 +1,5 @@
+// https://docs.rs/clap/latest/clap/_derive/index.html
+
 use clap::{Args, Parser, Subcommand};
 
 #[derive(Parser)]
@@ -10,14 +12,23 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// does testing things
     Echo(Echo),
+    ListFile(ListFile),
 }
 
 #[derive(Args)]
 pub struct Echo {
+    #[arg()]
     message: Vec<String>,
 }
+
+#[derive(Args)]
+#[command(about = "List files of a certain type")]
+pub struct ListFile {
+    #[arg(required = true)]
+    file_type: Vec<String>,
+}
+
 impl Echo {
     pub fn echo_back(&self) {
         for i in &self.message {
